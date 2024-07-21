@@ -27,6 +27,7 @@ public class GenresController extends HttpServlet
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         String pathInfo=req.getPathInfo();
+        resp.addHeader("Access-Control-Allow-Origin", "*");
         try {
             if(pathInfo==null || pathInfo.equals("/")) {
                 List<Genre> genres=genreService.getAllGenres();

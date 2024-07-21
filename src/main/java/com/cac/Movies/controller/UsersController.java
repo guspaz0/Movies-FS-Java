@@ -30,6 +30,7 @@ public class UsersController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         String pathInfo=req.getPathInfo();
+        resp.addHeader("Access-Control-Allow-Origin", "*");
         try {
             if(pathInfo==null || pathInfo.equals("/")) {
                 List<User> users=userService.getAllUsers();
