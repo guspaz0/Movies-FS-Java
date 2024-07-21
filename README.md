@@ -2,23 +2,13 @@
 
 # Codo a codo
 
-## Full stack java 
+## Full stack java C24117
 
-### Proyecto integradro 
-
-## Grupo n°: 9
+### Proyecto integradror 
 
 ## Integrantes:
 
- Amato Juan Manuel 
-
- Abregu Dana Agustina
-
  Paz Gustavo Rodolfo
-
- Villablanca Rodas Marcia Elizabeth
-
-
 
 ## Docente
 
