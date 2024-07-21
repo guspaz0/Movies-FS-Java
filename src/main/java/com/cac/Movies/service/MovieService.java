@@ -56,8 +56,9 @@ public class MovieService {
             }
             rs.close();
             ps.close();
-            String sql_count = "select count(id) as movies_count from movies";
+            String sql_count = "select count(id) as movies_count from movies where title like ?";
             PreparedStatement ps_count = con.prepareStatement(sql_count);
+            ps_count.setString(1,'%'+search+'%');
             ResultSet rs_count = ps_count.executeQuery();
             if (rs_count.next()) {
                 MoviesResponseDTO response = new MoviesResponseDTO(

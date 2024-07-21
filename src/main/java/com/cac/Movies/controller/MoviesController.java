@@ -30,6 +30,7 @@ public class MoviesController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         String pathInfo=req.getPathInfo();
+        resp.addHeader("Access-Control-Allow-Origin", "*");
         try {
             // si la url es la raiz ("/"), devuelve todas las peliculas
             int page=1;
@@ -62,8 +63,8 @@ public class MoviesController extends HttpServlet {
             }
 
         } catch(SQLException | ClassNotFoundException e) {
+            System.out.println(String.valueOf(e));
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
-
         }
     }
 
