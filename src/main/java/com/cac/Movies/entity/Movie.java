@@ -6,14 +6,34 @@ public class Movie {
 
     private int id;
     private String title;
+    private String short_overview;
     private String image;
     private String background_image;
     private String overview;
     private Object genres;
     private String release_date;
-
+    private Double stars;
 
     public Movie(){};
+
+    public String getShort_overview() {
+        return short_overview;
+    }
+
+    public void setShort_overview(String short_overview) {
+        this.short_overview = short_overview;
+    }
+
+    public Double getStars() {
+        return stars;
+    }
+
+    public void setStars(Double stars) {
+        this.stars = stars;
+    }
+    public void setStars(){
+        this.stars = 0.;
+    }
 
     public Object getGenres() {
         return genres;
@@ -72,15 +92,17 @@ public class Movie {
     }
 
 
-    public Movie(int id, String title, String image, String background_image, String overview, String release_date, List<Genre> genres)
+    public Movie(int id, String title, String short_overview, String image, String background_image, String overview, String release_date, List<Genre> genres, Double stars)
     {
         this.id=id;
         this.title=title;
+        this.short_overview=short_overview;
         this.image=image;
         this.background_image=background_image;
         this.overview=overview;
         this.release_date=release_date;
         this.genres = genres;
+        this.stars = stars;
     }
 
 }

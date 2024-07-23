@@ -21,7 +21,8 @@ public class MovieService {
         try {
             List<Movie> movies = new ArrayList<>();
             Connection con = conexion.getConnection();
-            String sql = "select * from movies where title like ? limit 10 offset ?";
+            String sql = "select *, coalesce((select AVG(stars) from movie_ratings where movie_id = m.id ),'0') as stars "
+                    + "from movies m where title like ? limit 10 offset ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1,'%'+search+'%');
             ps.setInt(2,(page-1)*10);
@@ -47,11 +48,13 @@ public class MovieService {
                 Movie movie = new Movie(
                     rs.getInt("id"),
                     rs.getString("title"),
+                    rs.getString("short_overview"),
                     rs.getString("image"),
                     rs.getString("background_image"),
                     rs.getString("overview"),
                     rs.getString("release_date"),
-                    genres);
+                    genres,
+                    rs.getDouble("stars"));
                 movies.add(movie);
             }
             rs.close();
@@ -81,7 +84,8 @@ public class MovieService {
     {
         Movie movie=null;
         Connection con = conexion.getConnection();
-        String sql = "select * from movies where id =?";
+        String sql = "select *, coalesce((select AVG(stars) from movie_ratings where movie_id = m.id ),'0') as stars "
+                + "from movies m where id =?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
         ResultSet rs=ps.executeQuery();
@@ -106,11 +110,13 @@ public class MovieService {
             movie = new Movie(
                 rs.getInt("id"),
                 rs.getString("title"),
+                rs.getString("short_overview"),
                 rs.getString("image"),
                 rs.getString("background_image"),
                 rs.getString("overview"),
                 rs.getString("release_date"),
-                genres);
+                genres,
+                rs.getDouble("stars"));
         }
 
         rs.close();
@@ -122,14 +128,15 @@ public class MovieService {
     {
         try {
             Connection con = conexion.getConnection();
-            String sql = "INSERT INTO movies (title,image,background_image,overview,release_date) " +
-                    "VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO movies (title,short_overview,image,background_image,overview,release_date) " +
+                    "VALUES (?,?,?,?,?,?)";
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1,movie.getTitle());
-            ps.setString(2,movie.getImage());
-            ps.setString(3,movie.getBackground_image());
-            ps.setString(4,movie.getOverview());
-            ps.setString(5,movie.getRelease_date());
+            ps.setString(2,movie.getShort_overview());
+            ps.setString(3,movie.getImage());
+            ps.setString(4,movie.getBackground_image());
+            ps.setString(5,movie.getOverview());
+            ps.setString(6,movie.getRelease_date());
             ps.executeUpdate();
             ps.close();
             String sql_created = "SELECT LAST_INSERT_ID() AS id";
@@ -176,7 +183,7 @@ public class MovieService {
     {
         Connection con = conexion.getConnection();
         String sql = "UPDATE movies SET " +
-                "title=?, image=?, background_image=?, overview=?, release_date=?," +
+                "title=?, image=?, background_image=?, overview=?, release_date=?, short_description=?" +
                 "WHERE id=?";
         PreparedStatement ps=con.prepareStatement(sql);
         ps.setString(1,movie.getTitle());
@@ -184,7 +191,8 @@ public class MovieService {
         ps.setString(3,movie.getBackground_image());
         ps.setString(4,movie.getOverview());
         ps.setString(5,movie.getRelease_date());
-        ps.setInt(6,movie.getId());
+        ps.setString(6,movie.getShort_overview());
+        ps.setInt(7,movie.getId());
         ps.executeUpdate();
         ps.close();
         return movie;

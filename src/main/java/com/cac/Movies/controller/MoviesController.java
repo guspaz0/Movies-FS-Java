@@ -70,6 +70,7 @@ public class MoviesController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.addHeader("Access-Control-Allow-Origin", "*");
         try {
             Movie pelicula = objectMapper.readValue(req.getReader(),Movie.class);
             Movie created_movie = movieService.addMovie(pelicula);

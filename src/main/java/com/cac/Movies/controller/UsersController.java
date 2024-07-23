@@ -62,6 +62,7 @@ public class UsersController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pathInfo=req.getPathInfo();
+        resp.addHeader("Access-Control-Allow-Origin", "*");
         try {
             if(pathInfo==null || pathInfo.equals("/")) {
                 User user = objectMapper.readValue(req.getReader(), User.class);
