@@ -29,12 +29,16 @@ create table movie_genres(
 
 create table users(
 	id int auto_increment not null,
-	name varchar(30) not null,
+	name varchar(20) not null,
+	lastname varchar(20) not null,
+	country_code varchar(3) not null,
 	birth_date datetime not null,
+	gender enum('male', 'female','unknown') default 'unknown',
 	username varchar(30) not null,
 	contrasena varchar(255) not null,
 	primary key (id)
 );
+
 
 create table user_favorites(
 	user_id int,
@@ -56,8 +60,6 @@ create table movie_ratings(
 	foreign key (user_id) references users(id),
 	foreign key (stars) references ratings(id)
 );
-
-
 
 
 insert into movies(title,short_overview,image,background_image,overview,release_date) values
@@ -107,11 +109,14 @@ insert into genres(name) values
 	('Thriller'),
 	('Science Fiction');
 
-insert into users(name,username,contrasena,birth_date) values (
-	'jhon doe',
+insert into users(name,lastname, username, contrasena, birth_date, gender, country_code) values (
+	'jhon',
+	'doe',
 	'jhon@cac.com',
 	'jhon',
-	'1996-03-09'
+	'1996-03-09',
+	'male',
+	'AR'
 );
 
 insert into movie_genres(movie_id, genre_id) values

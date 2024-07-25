@@ -31,7 +31,10 @@ public class UserService {
             User user = new User(
                 rs.getInt("id"),
                 rs.getString("name"),
+                rs.getString("lastname"),
+                rs.getString("gender"),
                 rs.getString("birth_date"),
+                rs.getString("country_code"),
                 rs.getString("username"),
                 "es secreto"
             );
@@ -53,7 +56,10 @@ public class UserService {
                 user = new User(
                         rs.getInt("id"),
                         rs.getString("name"),
+                        rs.getString("lastname"),
+                        rs.getString("gender"),
                         rs.getString("birth_date"),
+                        rs.getString("country_code"),
                         rs.getString("username"),
                         "es secreto");
             }
@@ -64,12 +70,16 @@ public class UserService {
     public User addUser(User user) throws SQLException, ClassNotFoundException
     {
         Connection con = conexion.getConnection();
-        String sql = "INSERT INTO users (name, birth_date, username, contrasena) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO users (name, lastname, gender, country_code, birth_date, username, contrasena)"+
+                " VALUES (?,?,?,?,?,?,?)";
         PreparedStatement ps=con.prepareStatement(sql);
         ps.setString(1,user.getName());
-        ps.setString(2,user.getBirth_date());
-        ps.setString(3,user.getUsername());
-        ps.setString(4,user.getContrasena());
+        ps.setString(2,user.getLastname());
+        ps.setString(3,user.getGender());
+        ps.setString(4,user.getCountry_code());
+        ps.setString(5,user.getBirth_date());
+        ps.setString(6,user.getUsername());
+        ps.setString(7,user.getContrasena());
         ps.executeUpdate();
         ps.close();
         return user;
@@ -89,11 +99,12 @@ public class UserService {
     public User updateUser(User user) throws SQLException, ClassNotFoundException
     {
         Connection con = conexion.getConnection();
-        String sql = "UPDATE users SET name=?, birth_date=?, contrasena=? WHERE id=?";
+        String sql = "UPDATE users SET name=?, lastname=?, birth_date=?, contrasena=? WHERE id=?";
         PreparedStatement ps=con.prepareStatement(sql);
         ps.setString(1,user.getName());
-        ps.setString(2,user.getBirth_date());
-        ps.setString(3,user.getContrasena());
+        ps.setString(2,user.getLastname());
+        ps.setString(3,user.getBirth_date());
+        ps.setString(4,user.getContrasena());
         ps.executeUpdate();
         ps.close();
         return user;
@@ -112,7 +123,10 @@ public class UserService {
                 user = new User(
                     rs.getInt("id"),
                     rs.getString("name"),
+                    rs.getString("lastname"),
+                    rs.getString("gender"),
                     rs.getString("birth_date"),
+                    rs.getString("country_code"),
                     rs.getString("username"),
                     "es secreto");
                 rs.close();
