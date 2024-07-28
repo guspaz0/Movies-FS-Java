@@ -43,8 +43,8 @@ create table users(
 create table user_favorites(
 	user_id int,
 	movie_id int,
-	foreign key(user_id) references users(id),
-	foreign key(movie_id) references movies(id)
+	foreign key(user_id) references users(id) on delete cascade,
+	foreign key(movie_id) references movies(id) on delete cascade
 );
 
 create table ratings(
@@ -56,8 +56,8 @@ create table movie_ratings(
 	movie_id int,
 	user_id int,
 	stars tinyint,
-	foreign key (movie_id) references movies(id),
-	foreign key (user_id) references users(id),
+	foreign key (movie_id) references movies(id) on delete cascade,
+	foreign key (user_id) references users(id) on delete cascade,
 	foreign key (stars) references ratings(id)
 );
 
@@ -113,7 +113,7 @@ insert into users(name,lastname, username, contrasena, birth_date, gender, count
 	'jhon',
 	'doe',
 	'jhon@cac.com',
-	'jhon',
+	'5a76a55038449aadd49e8ff0045ff64284191c39bffa6f597d4418f24edcc34cff114af57e93272d42041c6f6a749909e8e414285619f448fa605df79606d212',
 	'1996-03-09',
 	'male',
 	'AR'
