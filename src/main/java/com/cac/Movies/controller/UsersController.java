@@ -66,7 +66,10 @@ public class UsersController extends HttpServlet {
         try {
             if(pathInfo==null || pathInfo.equals("/")) {
                 User user = objectMapper.readValue(req.getReader(), User.class);
-                userService.addUser(user);
+                User created_user = userService.addUser(user);
+                String json=objectMapper.writeValueAsString(created_user);
+                resp.setContentType("application/json");
+                resp.getWriter().write(json);
                 resp.setStatus(HttpServletResponse.SC_CREATED);
             }
             else //login de usuarios
@@ -82,7 +85,13 @@ public class UsersController extends HttpServlet {
                 } else {throw new ServletException();}
             }
         } catch(SQLException|ClassNotFoundException e) {
-            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+            System.out.println(e.getMessage());
+            if (e.getMessage().equals("java.sql.SQLException: el usuario ya existe")){
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            } else {
+                resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+            }
+
         }
     }
 }
