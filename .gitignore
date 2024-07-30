@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 catalina/
 .smarttomcat/
+.env
 
 ### IntelliJ IDEA ###
 .idea/

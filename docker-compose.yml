@@ -1,0 +1,15 @@
+services:
+  movies_cac:
+    container_name: java-api
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    volumes:
+      - ./target/cac-0.0.1.war:/usr/local/tomcat/webapps/api.war
+    restart: always
+    command: catalina.sh run
