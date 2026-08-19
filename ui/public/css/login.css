@@ -1,0 +1,63 @@
+body {
+    height: 100vh;
+}
+header{
+    height: 10%;
+}
+main {
+    height: 80%;
+}
+footer {
+    height: 10%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 10px;
+}
+
+.container > form, fieldset, legend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.container > form {
+    background-color: #FFD200;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 2px 2px 10px 2px gray;
+}
+
+input[type=submit] {
+    justify-content: center;
+    background-color: #3A7BC8;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 2px 2px 10px 2px gray;
+}
+
+input[type=submit]:hover {
+    background-color: lightblue;
+    color: black;
+}
+
+input[type=text], input[type=password] {
+    padding: 5px;
+    border-radius: 5px;
+    border: none
+}
+
+.error {
+    color: red;
+}

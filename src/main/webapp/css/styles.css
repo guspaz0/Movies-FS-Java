@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
+
+
+footer {
+    background: color #424242;
+    position: absolute;
+    bottom: 1px;
+    width: 100%
+}
+
+.navbar-brand > img{
+    width: 50px;
+    color: gray;
+    
+}
+.card{
+    width: 18rem;
+    border-radius: 10%;
+    border-color:blue !important;
+    
+}
+
+
+.card-group, .col {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+#carouselExampleCaptions{
+    width: 100%;
+    height: 400px;
+}
+#carouselExampleCaptions > img{
+   max-height: 400px;
+}
+.contactanos{
+    border: 20px;
+    margin-top:20px;
+    width: 50%;
+    height: 50%;
+    border-radius: 10%;
+    border-color: black;
+    background-color:cornflowerblue; 
+    
+}
+#contacto{
+    width: 50%;
+    height: 50%;
+    border-radius: 10%;
+    border-color: black;
+    background-color:cornflowerblue; 
+}
+
+.userData {
+    background: white;
+    border: solid 1px transparent;
+    border-radius: 5px;
+    padding: 5px;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 1px 1px 1px 1px gray;
+ }
+
+ .userData>img {
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    border: solid 1px transparent;
+    background-color: #FFD200;
+    color: white;
+    font-weigh: bolder;
+    border-radius: 50%;
+ }

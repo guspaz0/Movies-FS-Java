@@ -10,6 +10,6 @@ services:
     env_file:
       - .env
     volumes:
-      - ./target/cac-0.0.1.war:/usr/local/tomcat/webapps/api.war
-    restart: always
+      - ./target/cac-0.0.1.war:/usr/local/tomcat/webapps/ROOT.war
+    restart: unless-stopped
     command: catalina.sh run

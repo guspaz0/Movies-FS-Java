@@ -44,3 +44,11 @@ build/
 ### Log files ###
 /logs/
 *.log
+
+### node modules ###
+node_modules/
+
+### Archivos compilados UI ###
+src/main/webapp/assets/
+src/main/webapp/index.html
+src/main/webapp/vite.svg
