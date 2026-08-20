@@ -5,6 +5,7 @@ target/
 catalina/
 .smarttomcat/
 .env
+.tmp-tomcat/
 
 ### IntelliJ IDEA ###
 .idea/
@@ -47,6 +48,10 @@ build/
 
 ### node modules ###
 node_modules/
+
+### Playwright ###
+test-results/
+playwright-report/
 
 ### Archivos compilados UI ###
 src/main/webapp/assets/

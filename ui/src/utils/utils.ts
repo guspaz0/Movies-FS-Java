@@ -1,4 +1,4 @@
-const { VITE_DB_HOST, VITE_TMDB_AUTH } = import.meta.env;
+const { VITE_BASE_URL, VITE_TMDB_AUTH } = import.meta.env;
 
 type FetchOrigin = "local" | "terceros";
 
@@ -9,7 +9,7 @@ export async function fetchData(
   body?: object,
 ) {
   let host: Record<FetchOrigin, string> = {
-    local: VITE_DB_HOST,
+    local: VITE_BASE_URL,
     terceros: "https://api.themoviedb.org/3",
   };
   try {

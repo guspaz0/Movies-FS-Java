@@ -1,12 +1,15 @@
 {
-  "name": "my-vue-app",
+  "name": "movies-ui-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite --config ./ui/vite.config.ts",
     "build": "vue-tsc -b && vite build --config ./ui/vite.config.ts",
-    "preview": "vite preview --config ./ui/vite.config.ts"
+    "preview": "vite preview --config ./ui/vite.config.ts",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
@@ -18,6 +21,7 @@
     "vue-router": "^4.4.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@vitejs/plugin-vue": "^5.0.5",
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
